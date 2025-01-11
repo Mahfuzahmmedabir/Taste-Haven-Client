@@ -12,6 +12,7 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.request.use(
     function (config) {
       const token = localStorage.getItem('acces-token');
+      console.log('interto', token);
       config.headers.authorization = `Bearer ${token}`;
       return config;
     },
@@ -23,7 +24,6 @@ const useAxiosSecure = () => {
     function (response) {
       return response;
     },
-
     async error => {
       const status = error.response.status;
       console.log('status error in interceptors', status);
@@ -31,12 +31,10 @@ const useAxiosSecure = () => {
         await logout();
         navigate('/login');
       }
-
       return Promise.reject(error);
     }
   );
 
   return axiosSecure;
 };
-
 export default useAxiosSecure;

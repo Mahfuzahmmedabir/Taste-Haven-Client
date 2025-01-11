@@ -25,7 +25,7 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to={'/'}>
+                <NavLink to={'/dashbord/adminHome'}>
                   <FaHome className="text-xl"></FaHome>
                   Admin Home
                 </NavLink>
@@ -50,7 +50,7 @@ const Dashboard = () => {
               </li>
               <div className="divider"></div>
               <li>
-                <NavLink to={'/'}>
+                <NavLink to={'/dashbord/Home'}>
                   <FaHome className="text-xl"></FaHome>
                   Home
                 </NavLink>
@@ -71,7 +71,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to={'/'}>
+                <NavLink to={'/dashbord/Home'}>
                   <FaShoppingCart className="text-xl"></FaShoppingCart>
                   Home
                 </NavLink>

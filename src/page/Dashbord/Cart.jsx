@@ -3,15 +3,15 @@ import useCart from '../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [cart, refetch] = useCart();
-  
+  console.log([cart.price]);
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const x = parseInt(totalPrice);
   const axiosSecure = useAxiosSecure();
-
   const handelDelete = id => {
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -28,8 +28,7 @@ const Cart = () => {
           icon: 'success',
         });
 
-        axiosSecure.delete(`/carts/${id}`)
-          .then(res => {
+        axiosSecure.delete(`/carts/${id}`).then(res => {
           console.log(res);
         });
       }
@@ -39,6 +38,19 @@ const Cart = () => {
   return (
     <div>
       <div className="overflow-x-auto">
+        <div className="flex justify-evenly my-10 ">
+          <h2 className="text-3xl">Total {cart.length}</h2>
+          <h2 className="text-3xl">Total Price {x}</h2>
+          {cart.length ? (
+            <button className="btn btn-neutral">
+              <Link to={'/dashbord/payment'}>Pay</Link>
+            </button>
+          ) : (
+            <button disabled className="btn btn-neutral">
+              pay
+            </button>
+          )}
+        </div>
         <table className="table">
           {/* head */}
           <thead>

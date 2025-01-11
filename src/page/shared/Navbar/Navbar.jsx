@@ -27,7 +27,6 @@ const Navbar = () => {
       )}
     </>
   );
-
   return (
     <div>
       <div className="navbar fixed z-10 opacity-60 text-white  bg-black max-w-screen-xl">
@@ -66,7 +65,7 @@ const Navbar = () => {
 
         <div className="navbar-end gap-4">
           <button className="btn">
-            <Link to={'/dashbord/cart'}>
+            <Link to={'/cart'}>
               <IoCart className="text-2xl mr-1"></IoCart>
             </Link>
             <div className="badge badge-secondary">+{cart.length}</div>

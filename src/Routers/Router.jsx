@@ -14,6 +14,9 @@ import AddItems from '../page/Dashbord/AddItems/AddItems';
 import AdminRoute from './AdminRoute';
 import ManageItems from '../page/Dashbord/ManageItems/ManageItems';
 import Updeat from '../page/Dashbord/Updeat/Updeat';
+import Payment from '../page/Dashbord/Payment/Payment';
+import AdminHome from '../page/Dashbord/AdminHome/AdminHome';
+import UserHome from '../page/Dashbord/UserHome/UserHome';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +51,14 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+      {
+        path: '/cart',
+        element: (
+          <PrivetRoute>
+            <Cart></Cart>
+          </PrivetRoute>
+        ),
+      },
     ],
   },
   {
@@ -59,11 +70,23 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: 'dashbord',
+        path: '/dashbord',
         element: <Cart></Cart>,
+      },
+      {
+        path: '/dashbord/payment',
+        element: <Payment></Payment>,
+      },
+      {
+        path: '/dashbord/Home',
+        element: <UserHome></UserHome>
       },
 
       // admin route
+      {
+        path: 'adminHome',
+        element: <AdminHome></AdminHome>,
+      },
       {
         path: 'addItems',
         element: (
@@ -95,7 +118,7 @@ const router = createBrowserRouter([
             <Updeat></Updeat>
           </AdminRoute>
         ),
-        loader: ({params}) =>
+        loader: ({ params }) =>
           fetch(`http://localhost:5000/menu/${params.id}`),
       },
     ],
