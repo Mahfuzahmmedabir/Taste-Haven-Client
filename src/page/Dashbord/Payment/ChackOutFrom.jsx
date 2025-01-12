@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 // import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useCart from '../../../hooks/useCart';
 import useAuth from '../../../hooks/useAuth';
-import useAxiosOpen from '../../../hooks/useAxiosOpen';
+
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const ChackOutFrom = () => {
   const [error, setError] = useState('');
   const [clientSecret, setClientSecret] = useState('');
@@ -12,14 +13,14 @@ const ChackOutFrom = () => {
   const stript = useStripe();
   const elements = useElements();
   const { user } = useAuth();
-  const axiosOpen = useAxiosOpen();
+  const axiosSecure = useAxiosSecure()
   const [cart] = useCart();
   console.log(cart);
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
   console.log(totalPrice);
   useEffect(() => {
     if (totalPrice > 0 && user?.email) {
-      axiosOpen
+      axiosSecure
         .post('/create-payment-intent', {
           price: totalPrice,
         })
@@ -28,7 +29,8 @@ const ChackOutFrom = () => {
           setClientSecret(res.data.clientSecret);
         });
     }
-  }, [axiosOpen, totalPrice]);
+  }, [axiosSecure, totalPrice]);
+  
   const handleSubmit = async e => {
     e.preventDefault();
     if (!stript || !elements) {
@@ -76,7 +78,7 @@ const ChackOutFrom = () => {
           status: 'under panding',
         };
 
-        const res = await axiosOpen.post('/payments', payments);
+        const res = await axiosSecure.post('/payments', payments);
         console.log('payments saved', res.data);
       }
     }
@@ -103,7 +105,7 @@ const ChackOutFrom = () => {
         <button
           type="submit"
           className="btn  btn-neutral"
-          disabled={!stript || !clientSecret}
+          
         >
           Pay
         </button>

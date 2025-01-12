@@ -79,7 +79,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashbord/Home',
-        element: <UserHome></UserHome>
+        element: <UserHome></UserHome>,
       },
 
       // admin route
@@ -118,8 +118,7 @@ const router = createBrowserRouter([
             <Updeat></Updeat>
           </AdminRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+        loader: ({ params }) => fetch(`/menu/${params.id}`),
       },
     ],
   },
