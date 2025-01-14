@@ -18,6 +18,8 @@ import Payment from '../page/Dashbord/Payment/Payment';
 import AdminHome from '../page/Dashbord/AdminHome/AdminHome';
 import UserHome from '../page/Dashbord/UserHome/UserHome';
 
+// const { createBrowserRouter } = require("react-router-dom");
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -125,3 +127,5 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+
